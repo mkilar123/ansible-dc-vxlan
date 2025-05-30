@@ -79,6 +79,9 @@
 #     - MD.vxlan.multisite.overlay.vrfs is defined
 #     - MD.vxlan.fabric.type == 'MFD'
 
+- ansible.builtin.debug:
+    var: "{{ nac_tags.create_vrfs_networks }}"
+
 - name: Get vrf attachments list
   cisco.dcnm.dcnm_rest:
     method: GET
