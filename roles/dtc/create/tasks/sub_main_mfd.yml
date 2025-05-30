@@ -57,4 +57,5 @@
   when:
     - MD.vxlan.multisite.overlay is defined
     - changes_detected_vrfs or changes_detected_networks
-  tags: "{{ nac_tags.create_vrfs_networks }}"
+  tags:
+    - cr_manage_vrfs_networks
