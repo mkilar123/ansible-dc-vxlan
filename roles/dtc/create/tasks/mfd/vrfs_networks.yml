@@ -81,8 +81,8 @@
 
 - name: Get vrf attachments list
   cisco.dcnm.dcnm_rest:
-      method: GET
-      path: /appcenter/cisco/ndfc/api/v1/onemanage/top-down/fabrics/{{ MD_Extended.vxlan.fabric.name }}/vrfs/attachments
+    method: GET
+    path: /appcenter/cisco/ndfc/api/v1/onemanage/top-down/fabrics/{{ MD_Extended.vxlan.fabric.name }}/vrfs/attachments
   register: vrfAttachmentList
 
 - name: Filter vrf attachments to be removed
@@ -147,8 +147,8 @@
 
 - name: Get network attachments list
   cisco.dcnm.dcnm_rest:
-      method: GET
-      path: /appcenter/cisco/ndfc/api/v1/onemanage/top-down/fabrics/{{ MD_Extended.vxlan.fabric.name }}/networks/attachments
+    method: GET
+    path: /appcenter/cisco/ndfc/api/v1/onemanage/top-down/fabrics/{{ MD_Extended.vxlan.fabric.name }}/networks/attachments
   register: networkAttachmentList
   when:
     - MD.vxlan.fabric.type == 'MFD'
