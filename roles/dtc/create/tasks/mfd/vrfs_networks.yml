@@ -70,14 +70,14 @@
 # --------------------------------------------------------------------
 # Manage Loopback VRF attachments on NDFC (MFD)
 # --------------------------------------------------------------------
-- name: Attach VRF Loopbacks per VRF
-  include_tasks: vrf_loopbacks.yml
-  loop_control:
-    loop_var: vrf
-  loop: "{{ MD.vxlan.multisite.overlay.vrfs }}"
-  when:
-    - MD.vxlan.multisite.overlay.vrfs is defined
-    - MD.vxlan.fabric.type == 'MFD'
+# - name: Attach VRF Loopbacks per VRF
+#   include_tasks: vrf_loopbacks.yml
+#   loop_control:
+#     loop_var: vrf
+#   loop: "{{ MD.vxlan.multisite.overlay.vrfs }}"
+#   when:
+#     - MD.vxlan.multisite.overlay.vrfs is defined
+#     - MD.vxlan.fabric.type == 'MFD'
 
 - name: Get vrf attachments list
   cisco.dcnm.dcnm_rest:
