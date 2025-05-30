@@ -50,6 +50,7 @@
 - name: set facts for result
   ansible.builtin.set_fact:
     switch_list_create: "{{result}}"
+  tags: "{{ nac_tags.create }}"
 
 - name: Manage NDFC Fabric VRFs and Networks
   ansible.builtin.import_tasks: mfd/vrfs_networks.yml
