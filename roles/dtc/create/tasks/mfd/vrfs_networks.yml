@@ -79,26 +79,26 @@
 #     - MD.vxlan.multisite.overlay.vrfs is defined
 #     - MD.vxlan.fabric.type == 'MFD'
 
-# - name: Get vrf attachments list
-#   cisco.dcnm.dcnm_rest:
-#     method: GET
-#     path: /appcenter/cisco/ndfc/api/v1/onemanage/top-down/fabrics/{{ MD_Extended.vxlan.fabric.name }}/vrfs/attachments
-#   register: vrfAttachmentList
+- name: Get vrf attachments list
+  cisco.dcnm.dcnm_rest:
+    method: GET
+    path: /appcenter/cisco/ndfc/api/v1/onemanage/top-down/fabrics/{{ MD_Extended.vxlan.fabric.name }}/vrfs/attachments
+  register: vrfAttachmentList
 
-# - name: Filter vrf attachments to be removed
-#   cisco.nac_dc_vxlan.dtc.fed_overlay_check:
-#     model_data: "{{ MD_Extended }}"
-#     ndfc_data: "{{ switch_list_create.response.DATA }}"
-#     ndfc_attachment_data: "{{ vrfAttachmentList.response.DATA }}"
-#     check_type: "vrf_attach"
-#   register: not_required_vrfs
+- name: Filter vrf attachments to be removed
+  cisco.nac_dc_vxlan.dtc.fed_overlay_check:
+    model_data: "{{ MD_Extended }}"
+    ndfc_data: "{{ switch_list_create.response.DATA }}"
+    ndfc_attachment_data: "{{ vrfAttachmentList.response.DATA }}"
+    check_type: "vrf_attach"
+  register: not_required_vrfs
 
-# - name: Remove vrf attachments
-#   cisco.dcnm.dcnm_rest:
-#       method: POST
-#       path: /appcenter/cisco/ndfc/api/v1/onemanage/top-down/fabrics/{{ MD_Extended.vxlan.fabric.name }}/vrfs/attachments
-#       json_data: "{{ not_required_vrfs.attachments_payload | to_json }}"
-#   register: vrf_attachment_result
+- name: Remove vrf attachments
+  cisco.dcnm.dcnm_rest:
+      method: POST
+      path: /appcenter/cisco/ndfc/api/v1/onemanage/top-down/fabrics/{{ MD_Extended.vxlan.fabric.name }}/vrfs/attachments
+      json_data: "{{ not_required_vrfs.attachments_payload | to_json }}"
+  register: vrf_attachment_result
 
 # # --------------------------------------------------------------------
 # # Manage Network Configuration for Federated NDFCs
